@@ -13,6 +13,7 @@ atlas_dir=$2
 
 KEEP_DUMP=1
 
+cd $atlas_dir
 #Find the nunaliit command to run
 nunaliit_cmd=$(${atlas_dir}/extra/nunaliit.sh check | grep NUNALIIT_CMD | cut -d '=' -f 2 | sed 's/[[:space:]]//g')
 dump_cmd="${nunaliit_cmd} dump --atlas-dir ${atlas_dir}"
@@ -32,7 +33,7 @@ echo "Creating tarball"
 atlas_parent_dir=$(dirname ${atlas_dir})
 atlas_name=$(basename ${atlas_dir})
 
-tar_cmd="tar -cf ${backup_dir}/${atlas_name}_$(/bin/date +%Y%m%d_%H%M%S).tar.gz -C ${atlas_parent_dir} ${atlas_name}"
+tar_cmd="tar -czf ${backup_dir}/${atlas_name}_$(/bin/date +%Y%m%d_%H%M%S).tar.gz -C ${atlas_parent_dir} ${atlas_name}"
 echo "Running tar command: ${tar_cmd}"
 ${tar_cmd}
 
@@ -44,3 +45,4 @@ do
   echo "Deleting old backup: ${del_cmd}"
   ${del_cmd}
 done
+cd -
