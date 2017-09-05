@@ -38,11 +38,11 @@ echo "Running tar command: ${tar_cmd}"
 ${tar_cmd}
 
 #delete all but newest 2 tar files
-old_backups=$(ls -t ${backup_dir} | grep -v '/$' | tail -n +3)
-for old_backup in ${old_backups}
-do
-  del_cmd="rm -r ${backup_dir}/${old_backup}"
-  echo "Deleting old backup: ${del_cmd}"
-  ${del_cmd}
-done
+#old_backups=$(ls -t ${backup_dir} | grep -v '/$' | tail -n +3)
+#for old_backup in ${old_backups}
+#do
+#  del_cmd="rm -r ${backup_dir}/${old_backup}"
+#  echo "Deleting old backup: ${del_cmd}"
+#  ${del_cmd}
+#done
 cd -
